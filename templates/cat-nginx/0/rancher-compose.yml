@@ -1,4 +1,37 @@
-.catalog:
+version: '2'
+
+# Catalog
+catalog:
   name: "Cat nginx"
   version: "v0.0.1"
   description: "A nginx server that display a picture of a cat"
+
+services:
+
+  # Web Server
+  cat-nginx-web:
+    scale: 5
+    start_on_create: true
+   
+  # Load balancer
+  cat-lb:
+    start_on_create: true
+    
+    lb_config:
+      certs: []
+      port_rules:
+      - hostname: cat-nginx.delaye.ninja
+        priority: 1
+        protocol: http
+        service: cat-nginx-web
+        source_port: 80
+        target_port: 80
+        
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000

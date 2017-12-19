@@ -2,11 +2,22 @@ version: '2'
 
 services:
 
-  # Werb server
+  # Web Server
   cat-nginx-web:
-
     image: nginx:1.13.7
     expose:
-     - 80
+    - '80'
     labels:
       io.rancher.container.pull_image: always
+      
+  # Load Balancer    
+  cat-lb:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 80:80/tcp
+    
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+      io.rancher.scheduler.global: 'true'
