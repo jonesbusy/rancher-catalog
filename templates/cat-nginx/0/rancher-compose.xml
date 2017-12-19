@@ -1,0 +1,4 @@
+.catalog:
+  name: "Cat nginx"
+  version: "v0.0.1"
+  description: "A nginx server that display a picture of a cat"

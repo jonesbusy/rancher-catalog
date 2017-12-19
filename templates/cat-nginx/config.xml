@@ -1,0 +1,7 @@
+name: Cat nginx
+description: |
+  A sampe nginx server that display a picture of a cat
+version: v0.0.1
+category: Others
+labels:
+io.rancher.orchestration.supported: 'cattle'

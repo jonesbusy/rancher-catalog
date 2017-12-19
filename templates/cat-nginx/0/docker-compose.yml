@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+
+  # Werb server
+  cat-nginx-web:
+
+    image: nginx:1.13.7
+    expose:
+     - 80
+    labels:
+      io.rancher.container.pull_image: always
